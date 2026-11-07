@@ -1,0 +1,1782 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EYFI Ambassador · Earned, not handed</title>
+  <meta name="description"
+    content="Climb the EYFI reward ladder — drive the excavator up the track and break the ice off each reward, from Scout to Founding Team. An EYFI Ambassador initiative by Polygnan." />
+  <meta property="og:title" content="EYFI Ambassador · Earned, not handed" />
+  <meta property="og:description"
+    content="Climb the reward ladder — break the ice off each reward, from Scout to Founding Team." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%E2%9D%84%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@700&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0A0A0A;
+      --line: #2A241F;
+      --line-lit: #5A3A20;
+      --orange: #FF6A1A;
+      --orange-2: #FF8A3D;
+      --glow: rgba(255, 106, 26, .5);
+      --e: #E8B923;
+      --e-2: #FFD264;
+      --e-glow: rgba(232, 185, 35, .4);
+      --green: #BFE94A;
+      --green-glow: rgba(191, 233, 74, .35);
+      --cream: #F6EFE6;
+      --muted: #8B837A;
+      --gold: #FFC24B;
+      --yellow: #F2B90C;
+      --yellow-d: #B98A08;
+      --mud: #5E3F22;
+      --mud-d: #3B2611;
+      --display: 'Bricolage Grotesque', sans-serif;
+      --body: 'Inter', sans-serif;
+      --mono: 'Space Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      margin: 0
+    }
+
+    body {
+      background-color: #0A0A0A;
+      background-image: radial-gradient(circle, #ffffff1a 1.2px, #0000 1.4px);
+      background-size: 20px 20px;
+      background-attachment: fixed;
+      color: var(--cream);
+      font-family: var(--body);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    #confetti {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 80
+    }
+
+    .ticker {
+      border-bottom: 1px solid var(--line);
+      background: var(--e);
+      color: #160f02;
+      overflow: hidden;
+      white-space: nowrap
+    }
+
+    .ticker .mq-track  {
+      display: inline-block;
+      padding: 7px 0;
+      font-family: var(--display);
+      font-weight: 800;
+      letter-spacing: .02em;
+      font-size: 13px;
+      animation: scroll 22s linear infinite
+    }
+
+    .ticker .mq-track span  {
+      padding: 0 14px
+    }
+
+    @keyframes scroll {
+      from {
+        transform: translateX(0)
+      }
+
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px 90px
+    }
+
+    .hero {
+      padding: 42px 0 6px
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--green)
+    }
+
+    .eyebrow .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px var(--green-glow)
+    }
+
+    h1 {
+      font-family: var(--display);
+      font-weight: 800;
+      line-height: .94;
+      letter-spacing: -.02em;
+      margin: 14px 0 0;
+      font-size: clamp(38px, 8vw, 72px)
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--green)
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 15.5px;
+      max-width: 48ch;
+      margin: 14px 0 0;
+      line-height: 1.5
+    }
+
+    .desk {
+      margin-top: 24px;
+      border: 1px solid rgba(255, 255, 255, .09);
+      background: rgba(255, 255, 255, .035);
+      backdrop-filter: blur(9px);
+      -webkit-backdrop-filter: blur(9px);
+      border-radius: 16px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap
+    }
+
+    .readout .count-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .regwrap {
+      flex: 1;
+      min-width: 230px
+    }
+
+    .rs-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px
+    }
+
+    .count-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .rs-val {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--e)
+    }
+
+    .rs-val .rupee {
+      font-size: .68em;
+      vertical-align: top;
+      margin-right: 1px
+    }
+
+    .rs-val .rs-max {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700
+    }
+
+    .rs-slot {
+      position: relative;
+      height: 22px;
+      display: flex;
+      align-items: center
+    }
+
+    #regslider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 99px;
+      outline: none;
+      cursor: pointer;
+      margin: 0;
+      touch-action: none;
+      background: linear-gradient(90deg, var(--e) var(--fill, 0%), #241d15 var(--fill, 0%));
+      border: 1px solid var(--line)
+    }
+
+    #regslider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--e);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .5), 0 0 10px var(--e-glow);
+      cursor: grab
+    }
+
+    #regslider::-webkit-slider-thumb:active {
+      cursor: grabbing
+    }
+
+    #regslider::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--e);
+      cursor: grab
+    }
+
+    #regslider:focus-visible {
+      box-shadow: 0 0 0 3px var(--e-glow)
+    }
+
+    .rs-notch {
+      position: absolute;
+      top: 50%;
+      width: 2px;
+      height: 11px;
+      margin-top: -5.5px;
+      margin-left: -1px;
+      background: rgba(255, 255, 255, .16);
+      border-radius: 1px;
+      pointer-events: none;
+      z-index: 2
+    }
+
+    .readout .count {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 1;
+      color: var(--cream)
+    }
+
+    .readout .count .rupee {
+      color: var(--e);
+      font-size: .55em;
+      vertical-align: super
+    }
+
+    .nextwrap {
+      flex: 1;
+      min-width: 190px
+    }
+
+    .nextline {
+      font-size: 13px;
+      color: var(--cream);
+      margin-bottom: 7px
+    }
+
+    .nextline b {
+      color: var(--e-2)
+    }
+
+    .bar {
+      height: 9px;
+      border-radius: 99px;
+      background: #201d15;
+      border: 1px solid var(--line);
+      overflow: hidden
+    }
+
+    .bar>i {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--e), var(--e-2));
+      box-shadow: 0 0 14px var(--e-glow);
+      transition: width .5s cubic-bezier(.2, .7, .2, 1)
+    }
+
+    .stat {
+      text-align: center
+    }
+
+    .stat .big {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 24px;
+      color: var(--gold)
+    }
+
+    .stat .small {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .btns {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      width: 100%
+    }
+
+    button {
+      font-family: var(--display);
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 11px;
+      border: 1px solid var(--line-lit);
+      background: #1c140e;
+      color: var(--cream);
+      padding: 11px 15px;
+      font-size: 14px;
+      transition: transform .08s, background .15s, border-color .15s
+    }
+
+    button:hover:not(:disabled) {
+      background: rgba(191, 233, 74, .08);
+      border-color: var(--green)
+    }
+
+    button:active:not(:disabled) {
+      transform: translateY(1px)
+    }
+
+    button:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px var(--green-glow)
+    }
+
+    button.primary {
+      background: var(--green);
+      color: #16210a;
+      border-color: var(--green)
+    }
+
+    button.primary:hover:not(:disabled) {
+      background: #cdf25f
+    }
+
+    button:disabled {
+      opacity: .45;
+      cursor: not-allowed
+    }
+
+    .modeseg {
+      display: inline-flex;
+      padding: 3px;
+      gap: 3px;
+      border-radius: 12px;
+      background: #1c140e;
+      border: 1px solid var(--line-lit)
+    }
+
+    .segbtn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 9px;
+      padding: 8px 15px;
+      font-size: 14px;
+      font-weight: 700
+    }
+
+    .segbtn:hover:not(:disabled) {
+      background: rgba(191, 233, 74, .08);
+      color: var(--cream)
+    }
+
+    .segbtn.on {
+      background: var(--green);
+      color: #16210a
+    }
+
+    .segbtn.on:hover:not(:disabled) {
+      background: #cdf25f
+    }
+
+    /* ===== the dig scene ===== */
+    .scene-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin: 44px 4px 20px
+    }
+
+    .scene-head h2 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 22px;
+      margin: 0
+    }
+
+    .scene-head span {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .scene {
+      position: relative;
+      padding-left: 118px
+    }
+
+    @media(max-width:600px) {
+      .scene {
+        padding-left: 96px
+      }
+    }
+
+    #tiers {
+      padding-top: 74px
+    }
+
+    /* vertical railway track */
+    .track {
+      position: absolute;
+      left: 48px;
+      top: 6px;
+      bottom: 6px;
+      width: 46px;
+      z-index: 1
+    }
+
+    @media(max-width:600px) {
+      .track {
+        left: 40px;
+        width: 40px
+      }
+    }
+
+    .rail {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      border-radius: 99px;
+      background: #241d18
+    }
+
+    .rail.l {
+      left: 8px
+    }
+
+    .rail.r {
+      right: 8px
+    }
+
+    .rail-glow {
+      display: none;
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      bottom: 0;
+      height: 0;
+      border-radius: 99px;
+      background: repeating-linear-gradient(180deg, rgba(232, 185, 35, .9) 0 8px, rgba(232, 185, 35, .5) 8px 16px);
+      box-shadow: 0 0 18px var(--e-glow);
+      transition: height .55s cubic-bezier(.2, .7, .2, 1);
+      opacity: .9
+    }
+
+    .sleepers {
+      position: absolute;
+      inset: 0
+    }
+
+    .sleeper {
+      position: absolute;
+      left: 2px;
+      right: 2px;
+      height: 4px;
+      border-radius: 2px;
+      background: #37302A
+    }
+
+    /* top-down excavator rig — drives up the track, slews to the bar */
+    .rig {
+      position: absolute;
+      left: 2px;
+      width: 200px;
+      height: 170px;
+      z-index: 3;
+      transition: transform .6s cubic-bezier(.35, .15, .2, 1);
+      will-change: transform
+    }
+
+    @media(max-width:600px) {
+      .rig {
+        left: -2px;
+        width: 172px
+      }
+    }
+
+    .exc {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      display: block
+    }
+
+    /* upper deck slews (rotates) toward the bar */
+    .deck {
+      transform-box: view-box;
+      transform-origin: 70px 110px;
+      transition: transform .62s cubic-bezier(.3, .1, .2, 1)
+    }
+
+    .rig.slew .deck {
+      transform: rotate(84deg)
+    }
+
+    /* bucket jabs forward along the boom to mine */
+    .bucket {
+      transition: transform .14s ease
+    }
+
+    .rig.dig .bucket {
+      transform: translateY(-8px)
+    }
+
+    /* crawler tracks scroll while driving */
+    .tread-dash {
+      transition: opacity .2s
+    }
+
+    .rig.driving .tread-dash {
+      animation: tread .4s linear infinite
+    }
+
+    @keyframes tread {
+      to {
+        transform: translateY(-11px)
+      }
+    }
+
+    .rig.driving .exc {
+      animation: rigshake .1s linear infinite
+    }
+
+    @keyframes rigshake {
+
+      0%,
+      100% {
+        transform: translate(0, .4px)
+      }
+
+      25% {
+        transform: translate(-.6px, -.3px)
+      }
+
+      50% {
+        transform: translate(.5px, .4px)
+      }
+
+      75% {
+        transform: translate(-.3px, -.5px)
+      }
+    }
+
+    .sndbtn .wv {
+      opacity: .22;
+      transition: .2s
+    }
+
+    .sndbtn.on {
+      color: var(--green);
+      border-color: var(--green)
+    }
+
+    .sndbtn.on .wv {
+      opacity: 1
+    }
+
+    /* forward work light */
+    .lampcone {
+      opacity: 0;
+      transition: opacity .3s
+    }
+
+    .rig.lamp .lampcone {
+      opacity: 1
+    }
+
+    /* street lamps down the left of the track */
+    .streetlamp {
+      position: absolute;
+      width: 30px;
+      height: 54px;
+      z-index: 2;
+      transform: translateY(-50%);
+      pointer-events: none
+    }
+
+    .streetlamp .pool {
+      position: absolute;
+      left: 4px;
+      top: 9px;
+      width: 40px;
+      height: 46px;
+      transition: .5s;
+      background: radial-gradient(ellipse 55% 80% at 62% 0%, rgba(255, 214, 120, .09), transparent 70%);
+      clip-path: polygon(46% 0, 66% 0, 100% 100%, 16% 100%)
+    }
+
+    .streetlamp .pole {
+      position: absolute;
+      left: 5px;
+      bottom: 2px;
+      width: 3px;
+      height: 44px;
+      background: #3c3a34;
+      border-radius: 2px
+    }
+
+    .streetlamp .base {
+      position: absolute;
+      left: 2px;
+      bottom: 0;
+      width: 9px;
+      height: 3px;
+      border-radius: 2px;
+      background: #2b2925
+    }
+
+    .streetlamp .arm {
+      position: absolute;
+      left: 6px;
+      top: 7px;
+      width: 15px;
+      height: 3px;
+      background: #3c3a34;
+      border-radius: 2px
+    }
+
+    .streetlamp .head {
+      position: absolute;
+      left: 18px;
+      top: 5px;
+      width: 11px;
+      height: 8px;
+      border-radius: 3px 3px 6px 6px;
+      background: #6a5f3e;
+      transition: .5s;
+      box-shadow: 0 0 5px 1px rgba(255, 214, 120, .2)
+    }
+
+    .streetlamp.lit .head {
+      background: #ffe0a0;
+      box-shadow: 0 0 16px 5px rgba(255, 214, 120, .75)
+    }
+
+    .streetlamp.lit .pool {
+      background: radial-gradient(ellipse 55% 80% at 62% 0%, rgba(255, 214, 120, .32), transparent 72%)
+    }
+
+    .streetlamp.next .head {
+      background: #d8b878;
+      box-shadow: 0 0 10px 3px rgba(255, 214, 120, .45);
+      animation: beacon 1.8s ease-in-out infinite
+    }
+
+    .streetlamp.next .pool {
+      background: radial-gradient(ellipse 55% 80% at 62% 0%, rgba(255, 214, 120, .19), transparent 72%)
+    }
+
+    @keyframes beacon {
+
+      0%,
+      100% {
+        box-shadow: 0 0 8px 2px rgba(255, 214, 120, .34)
+      }
+
+      50% {
+        box-shadow: 0 0 13px 4px rgba(255, 214, 120, .6)
+      }
+    }
+
+    /* finish banner at the top of the track */
+    .finish {
+      position: absolute;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: translateX(-50%);
+      pointer-events: none
+    }
+
+    .finish .band {
+      width: 70px;
+      height: 14px;
+      border-radius: 3px;
+      border: 1px solid rgba(255, 255, 255, .4);
+      background: repeating-conic-gradient(#f2f2f2 0% 25%, #16161c 0% 50%) 0/11px 11px;
+      box-shadow: 0 5px 16px -6px rgba(0, 0, 0, .7)
+    }
+
+    .finish .lbl {
+      margin-top: 4px;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 10px;
+      letter-spacing: .2em;
+      color: var(--green);
+      text-shadow: 0 0 8px var(--green-glow)
+    }
+
+    /* ---- driver cockpit (fixed bottom dashboard) ---- */
+    body {
+      padding-bottom: 150px
+    }
+
+    .cockpit {
+      position: fixed;
+      left: 20px;
+      bottom: 18px;
+      z-index: 70;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 10px 14px 12px;
+      border-radius: 16px;
+      background: rgba(18, 18, 21, .85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, .1);
+      box-shadow: 0 14px 44px -14px rgba(0, 0, 0, .75)
+    }
+
+    @media(max-width:600px) {
+      .cockpit {
+        left: 0;
+        right: 0;
+        margin-inline: auto;
+        width: max-content;
+        bottom: 12px;
+        gap: 12px;
+        padding: 9px 12px 11px;
+        background: rgba(18, 18, 21, .94)
+      }
+    }
+
+    .cockpit.locked .wheelbox,
+    .cockpit.locked .accel,
+    .cockpit.locked .minehub {
+      opacity: .4;
+      pointer-events: none
+    }
+
+    #regslider:disabled {
+      opacity: .5;
+      cursor: not-allowed
+    }
+
+    .cbox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px
+    }
+
+    .cbox .cap {
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .wheelbox {
+      position: relative;
+      width: 78px;
+      height: 78px;
+      touch-action: none;
+      border-radius: 50%
+    }
+
+    .wheel {
+      position: absolute;
+      inset: 0;
+      cursor: grab;
+      will-change: transform
+    }
+
+    .wheel:active {
+      cursor: grabbing
+    }
+
+    .minehub {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 36px;
+      height: 36px;
+      margin: -18px 0 0 -18px;
+      border-radius: 50%;
+      border: 2px solid #3a3a44;
+      background: #1c1c22;
+      color: #7a7a82;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      padding: 0;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 9px;
+      letter-spacing: .02em;
+      cursor: not-allowed;
+      transition: .25s;
+      z-index: 3
+    }
+
+    .helpbtn {
+      position: absolute;
+      top: -9px;
+      right: -9px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid var(--green);
+      background: #14140f;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1;
+      padding: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: .2s;
+      z-index: 6
+    }
+
+    .helpbtn:hover {
+      background: var(--green);
+      color: #16210a
+    }
+
+    .helpcard {
+      position: absolute;
+      bottom: calc(100% + 12px);
+      left: 0;
+      width: 250px;
+      padding: 13px 15px;
+      border-radius: 13px;
+      z-index: 80;
+      background: rgba(24, 24, 28, .97);
+      border: 1px solid var(--line-2);
+      box-shadow: 0 14px 34px -12px rgba(0, 0, 0, .75)
+    }
+
+    .helpcard b {
+      display: block;
+      font-family: var(--display);
+      font-size: 12px;
+      letter-spacing: .02em;
+      margin-bottom: 8px;
+      color: var(--green)
+    }
+
+    .helpcard p {
+      margin: 5px 0;
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--muted)
+    }
+
+    .helpcard p span {
+      color: var(--cream);
+      font-weight: 700
+    }
+
+    .minehub.armed {
+      background: var(--e);
+      color: #160f02;
+      border-color: var(--e-2);
+      box-shadow: 0 0 16px var(--e-glow);
+      cursor: pointer
+    }
+
+    .accel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      min-width: 80px;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1px solid #3a3a44;
+      background: #1c1c22;
+      color: #7a7a82;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: .03em;
+      cursor: not-allowed;
+      transition: .25s
+    }
+
+    .accel .ar {
+      font-size: 16px;
+      line-height: .9
+    }
+
+    .accel.armed {
+      background: var(--green);
+      color: #16210a;
+      border-color: var(--green);
+      box-shadow: 0 0 20px var(--green-glow);
+      cursor: pointer
+    }
+
+    .accel.armed:active {
+      transform: translateY(1px)
+    }
+
+    .nudge {
+      animation: nudge .95s ease
+    }
+
+    @keyframes nudge {
+      0% {
+        box-shadow: 0 0 0 0 rgba(191, 233, 74, .5)
+      }
+
+      28% {
+        box-shadow: 0 0 0 11px rgba(191, 233, 74, .3)
+      }
+
+      100% {
+        box-shadow: 0 0 0 20px rgba(191, 233, 74, 0)
+      }
+    }
+
+    .guide {
+      animation: guideglow 1.7s ease-in-out infinite
+    }
+
+    @keyframes guideglow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(191, 233, 74, 0)
+      }
+
+      50% {
+        box-shadow: 0 0 0 7px rgba(191, 233, 74, .24)
+      }
+    }
+
+    /* reward bars — translucent gold glass (their spec) + coin */
+    .tier {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(232, 185, 35, .4);
+      background: rgba(232, 185, 35, .06);
+      backdrop-filter: blur(5px) saturate(.9);
+      -webkit-backdrop-filter: blur(5px) saturate(.9);
+      margin-bottom: 16px;
+      transition: border-color .4s, background .4s, box-shadow .4s;
+      overflow: hidden
+    }
+
+    .coin {
+      flex: 0 0 auto;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      position: relative;
+      z-index: 2;
+      background: radial-gradient(circle at 34% 30%, var(--e-2), #b9820a);
+      border: 1.5px solid #e7ad24;
+      box-shadow: 0 0 14px var(--e-glow)
+    }
+
+    .coin svg {
+      width: 23px;
+      height: 23px
+    }
+
+    .coin svg * {
+      stroke: #2a1e02
+    }
+
+    .coin .fillIcon {
+      fill: #2a1e02;
+      stroke: none
+    }
+
+    .cbody {
+      min-width: 0;
+      position: relative;
+      z-index: 2
+    }
+
+    .title {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: -.01em;
+      color: var(--cream)
+    }
+
+    .title .rg {
+      color: var(--e-2);
+      font-weight: 800
+    }
+
+    .desc {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 3px;
+      line-height: 1.4
+    }
+
+    .check {
+      margin-left: auto;
+      flex: 0 0 auto;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, .18);
+      display: grid;
+      place-items: center;
+      color: transparent;
+      font-size: 12px;
+      transition: .4s;
+      position: relative;
+      z-index: 2
+    }
+
+    .tier.on {
+      border-color: rgba(232, 185, 35, .6);
+      background: rgba(232, 185, 35, .09);
+      box-shadow: 0 0 0 1px rgba(232, 185, 35, .22), 0 16px 40px -26px var(--e-glow)
+    }
+
+    .tier.on .check {
+      border-color: var(--green);
+      background: var(--green);
+      color: #16210a
+    }
+
+    .tier.on .check::after {
+      content: '✓'
+    }
+
+    .tier.crown.on {
+      border-color: rgba(191, 233, 74, .5);
+      box-shadow: 0 0 0 1px rgba(191, 233, 74, .28), 0 18px 44px -24px var(--green-glow)
+    }
+
+    .tier.crown.on .coin {
+      background: radial-gradient(circle at 34% 30%, var(--green), #9BC62C);
+      border-color: var(--green);
+      box-shadow: 0 0 18px var(--green-glow)
+    }
+
+    /* frost-on-glass overlay: translucent ice, reward still visible through it */
+    .ice {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      border-radius: 12px;
+      overflow: hidden;
+      pointer-events: none;
+      transition: opacity .55s;
+      backdrop-filter: blur(2.6px) saturate(1.05) brightness(1.03);
+      -webkit-backdrop-filter: blur(2.6px) saturate(1.05) brightness(1.03);
+      background: linear-gradient(135deg, rgba(232, 245, 255, .12), rgba(198, 224, 245, .09));
+      box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .30), inset 0 3px 14px rgba(255, 255, 255, .20), inset 0 -6px 16px rgba(140, 190, 255, .16), inset 0 0 34px rgba(180, 215, 255, .10)
+    }
+
+    .ice::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      background: radial-gradient(130% 72% at 12% 0%, rgba(255, 255, 255, .22), transparent 55%)
+    }
+
+    .ice::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      background: linear-gradient(116deg, transparent 34%, rgba(215, 238, 255, .22) 48%, transparent 55%)
+    }
+
+    .shine {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 55%;
+      z-index: 6;
+      pointer-events: none;
+      opacity: 0;
+      border-radius: 12px;
+      background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .5), transparent);
+      transform: translateX(-120%)
+    }
+
+    .foot {
+      margin-top: 38px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.6
+    }
+
+    .foot b {
+      color: var(--cream)
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        animation: none !important;
+        transition: none !important
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="confetti"></canvas>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="mq-track"></div>
+      <span>✦ WAVE 01 SCOUTS</span><span>✦ BUILD EYFI ON YOUR CAMPUS</span><span>✦ LIMITED SPOTS PER
+        COLLEGE</span><span>✦ PAID INTERNSHIPS</span>
+      <span>✦ WAVE 01 SCOUTS</span><span>✦ BUILD EYFI ON YOUR CAMPUS</span><span>✦ LIMITED SPOTS PER
+        COLLEGE</span><span>✦ PAID INTERNSHIPS</span>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <header class="hero">
+      <span class="eyebrow"><span class="dot"></span>EYFI · Campus Ambassador</span>
+      <h1>Earned, <em>not handed.</em></h1>
+      <p class="sub">Drag the slider or take the wheel — climb the track, break the ice off each reward, and see what
+        you unlock from Scout to Founding Team.</p>
+
+      <div class="desk">
+        <div class="regwrap">
+          <div class="rs-head"><span class="count-label">Registrations · drag to unlock</span><span class="rs-val"><span
+                class="rupee"></span><span id="count">0</span> <span class="rs-max">/ 200</span></span></div>
+          <div class="rs-slot">
+            <input type="range" id="regslider" min="0" max="200" step="1" value="0"
+              aria-label="Registrations — drag to unlock rewards">
+            <span class="rs-notch" style="left:12.5%"></span><span class="rs-notch" style="left:25%"></span><span
+              class="rs-notch" style="left:37.5%"></span><span class="rs-notch" style="left:50%"></span>
+          </div>
+          <div class="nextline" id="nextline">Steer to <b>Scout</b> and break the ice</div>
+        </div>
+        <div class="stat">
+          <div class="big"><span id="unlocked">0</span>/6</div>
+          <div class="small">unlocked</div>
+        </div>
+        <div class="btns">
+          <div class="modeseg" id="modeseg" role="group" aria-label="Mode">
+            <button class="segbtn on" id="manualBtn">Manual</button>
+            <button class="segbtn" id="autoBtn">▶ Auto</button>
+          </div>
+          <button id="reset">Reset</button>
+          <button id="sndbtn" class="sndbtn" title="Sound" aria-label="Toggle sound"><svg viewBox="0 0 24 24" width="16"
+              height="16" aria-hidden="true">
+              <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+              <path class="wv" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" />
+            </svg></button>
+        </div>
+      </div>
+    </header>
+
+    <div class="scene-head">
+      <h2>The reward ladder</h2><span>Scout → Founding Team</span>
+    </div>
+
+    <div class="scene" id="scene">
+      <div class="track" id="tk">
+        <div class="rail l"></div>
+        <div class="rail r"></div>
+        <div class="sleepers" id="sleepers"></div>
+        <div class="rail-glow" id="glow"></div>
+      </div>
+
+      <div id="lamps"></div>
+      <div class="finish" id="finish">
+        <div class="band"></div>
+        <div class="lbl">BRAVO</div>
+      </div>
+
+      <div class="rig" id="rig">
+        <svg class="exc" viewBox="0 0 200 170" aria-hidden="true">
+          <!-- crawler tracks (top-down), fixed -->
+          <g>
+            <rect x="46" y="58" width="20" height="104" rx="7" fill="#33333a" stroke="#4a4a52" stroke-width="1.5" />
+            <rect x="74" y="58" width="20" height="104" rx="7" fill="#33333a" stroke="#4a4a52" stroke-width="1.5" />
+            <g class="tread-dash">
+              <rect x="48" y="62" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="76" y="62" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="48" y="73" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="76" y="73" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="48" y="84" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="76" y="84" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="48" y="95" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="76" y="95" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="48" y="106" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="76" y="106" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="48" y="117" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="76" y="117" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="48" y="128" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="76" y="128" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="48" y="139" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="76" y="139" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="48" y="150" width="16" height="3" rx="1" fill="#55555d" />
+              <rect x="76" y="150" width="16" height="3" rx="1" fill="#55555d" />
+            </g>
+            <!-- slew ring -->
+            <circle cx="70" cy="110" r="24" fill="#2c2c32" stroke="#4a4a52" stroke-width="1.5" />
+            <circle cx="70" cy="110" r="15" fill="none" stroke="#3a3a42" stroke-width="1.5" />
+          </g>
+
+          <!-- upper deck: rotates about the slew ring (70,110) -->
+          <g class="deck">
+            <!-- forward work-light beam -->
+            <polygon class="lampcone" points="58,52 82,52 104,-26 36,-26" fill="rgba(255,226,150,0.16)" />
+            <!-- counterweight (rear) -->
+            <rect x="48" y="116" width="44" height="22" rx="8" fill="#B98A08" />
+            <!-- house body -->
+            <rect x="50" y="84" width="40" height="38" rx="8" fill="#F2B90C" stroke="#9c7406" stroke-width="1.5" />
+            <!-- engine hood (right) with vents -->
+            <rect x="72" y="88" width="16" height="30" rx="4" fill="#d9a70a" />
+            <line x1="75" y1="94" x2="85" y2="94" stroke="#b5850a" stroke-width="1.6" />
+            <line x1="75" y1="100" x2="85" y2="100" stroke="#b5850a" stroke-width="1.6" />
+            <line x1="75" y1="106" x2="85" y2="106" stroke="#b5850a" stroke-width="1.6" />
+            <!-- operator cab (front-left) + window -->
+            <rect x="51" y="86" width="18" height="24" rx="4" fill="#F2B90C" stroke="#9c7406" stroke-width="1.5" />
+            <rect x="54" y="89" width="12" height="16" rx="2" fill="#8fd0ef" opacity=".82" />
+            <!-- boom (forward/up) + hydraulic line -->
+            <polygon points="64,86 76,86 73,52 67,52" fill="#F2B90C" stroke="#9c7406" stroke-width="1.5" />
+            <line x1="68" y1="84" x2="70" y2="56" stroke="#8a8a90" stroke-width="2.4" />
+            <!-- stick + bucket (jabs to mine) -->
+            <g class="bucket">
+              <polygon points="66,54 74,54 72,36 68,36" fill="#F2B90C" stroke="#9c7406" stroke-width="1.5" />
+              <path d="M59 36 h22 l-4 -13 q-7 -4 -14 0 z" fill="#C9950B" stroke="#8a6604" stroke-width="1.5" />
+              <path d="M63 23 l1.4 -5 M69 21 l1 -5 M75 21 l-1 -5 M79 23 l-1.4 -5" stroke="#6b5104" stroke-width="2"
+                stroke-linecap="round" />
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <div id="tiers"></div>
+    </div>
+
+    <p class="foot"><b>A title you earn, not one you're handed.</b><br />An EYFI Ambassador initiative by Polygnan.</p>
+  </div>
+
+  <div class="cockpit" id="cockpit">
+    <div class="cbox">
+      <div class="wheelbox" id="wheelbox">
+        <div class="wheel" id="wheel">
+          <svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true">
+            <circle cx="50" cy="50" r="43" fill="none" stroke="#2a2a30" stroke-width="11" />
+            <circle cx="50" cy="50" r="43" fill="none" stroke="#3d3d47" stroke-width="3" />
+            <g stroke="#2a2a30" stroke-width="9" stroke-linecap="round">
+              <line x1="50" y1="50" x2="50" y2="14" />
+              <line x1="50" y1="50" x2="81" y2="68" />
+              <line x1="50" y1="50" x2="19" y2="68" />
+            </g>
+            <circle cx="50" cy="50" r="18" fill="#17171c" stroke="#3d3d47" stroke-width="2" />
+          </svg>
+        </div>
+        <button class="minehub" id="minehub">MINE</button>
+      </div>
+      <div class="cap">Steer &amp; mine</div>
+    </div>
+    <div class="cbox">
+      <button class="accel" id="accel"><span class="ar">▲</span>Accelerate</button>
+      <div class="cap">Drive up</div>
+    </div>
+    <button class="helpbtn" id="helpbtn" aria-label="How to play">?</button>
+    <div class="helpcard" id="helpcard" hidden>
+      <b>How to play</b>
+      <p>Hold &amp; rotate the wheel to aim the excavator's arm.</p>
+      <p>Tap <span>MINE</span> to dig out the reward.</p>
+      <p>Tap or hold <span>Accelerate</span> to drive to the next level.</p>
+    </div>
+  </div>
+
+  <script>
+    const IC = {
+      flag: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4M6 4h11l-2.2 3.4L17 11H6"/></svg>',
+      star: '<svg viewBox="0 0 24 24"><path class="fillIcon" d="M12 3.5l2.5 5.1 5.6.8-4.05 3.9.95 5.6L12 16.9 6.95 18.9l.95-5.6L3.85 9.4l5.6-.8z"/></svg>',
+      up: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l5.5-5.5 3.5 3 6.5-7"/><path d="M15 5.5h5v5"/></svg>',
+      bulb: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 18h5M10 21h4M12 3a6 6 0 0 0-3.8 10.6c.6.6.9 1.1.9 2.4h5.8c0-1.3.3-1.8.9-2.4A6 6 0 0 0 12 3z"/></svg>',
+      bag: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2.4"/><path d="M9 8V6.5A2.5 2.5 0 0 1 11.5 4h1A2.5 2.5 0 0 1 15 6.5V8"/><path d="M3 13h18"/></svg>',
+      crown: '<svg viewBox="0 0 24 24"><path class="fillIcon" d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.8 10.5H4.8z"/></svg>'
+    };
+    const TIERS = [
+      { t: 0, title: 'Scout', rg: '', desc: 'Private community, starter kit, part of the movement from day one', icon: 'flag' },
+      { t: 25, title: 'Campus Ambassador', rg: '· 25 regs', desc: 'Official title and badge, first swag drop, cash-prize challenge', icon: 'star' },
+      { t: 50, title: 'Level up', rg: '· 50 regs', desc: 'Event grants for your campus, exclusive merch', icon: 'up' },
+      { t: 75, title: 'Go further', rg: '· 75 regs', desc: 'Mentorship access, Campus event grants', icon: 'bulb' },
+      { t: 100, title: 'Paid internship Opportunity', rg: '· 100 regs', desc: 'Internship opportunities, invite to ambassador events', icon: 'bag' },
+      { t: 200, title: 'Founding Team', rg: '· 200 regs', desc: 'Consideration for the Founding Team, next wave', icon: 'crown', crown: true },
+    ];
+    const N = TIERS.length, MAX = 200;
+    const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const $ = s => document.querySelector(s);
+    const wait = ms => new Promise(r => setTimeout(r, reduce ? 0 : ms));
+
+    // build reward bars, top(summit)->bottom(scout)
+    const tiersEl = $('#tiers');
+    TIERS.slice().reverse().forEach(tier => {
+      const idx = TIERS.indexOf(tier);
+      const el = document.createElement('div');
+      el.className = 'tier' + (tier.crown ? ' crown' : ''); el.dataset.idx = idx;
+      el.innerHTML = `
+    <div class="coin">${IC[tier.icon]}</div>
+    <div class="cbody"><div class="title">${tier.title} <span class="rg">${tier.rg}</span></div><div class="desc">${tier.desc}</div></div>
+    <div class="check"></div>
+    <div class="ice"></div><div class="shine"></div>`;
+      tiersEl.appendChild(el);
+    });
+    const tierEls = [...tiersEl.querySelectorAll('.tier')];
+
+    // street lamps — one per level, down the left of the track
+    const lampsWrap = $('#lamps');
+    const lampEls = TIERS.map((_, idx) => {
+      const l = document.createElement('div'); l.className = 'streetlamp'; l.dataset.idx = idx;
+      l.innerHTML = '<div class="pool"></div><div class="pole"></div><div class="base"></div><div class="arm"></div><div class="head"></div>';
+      lampsWrap.appendChild(l); return l;
+    });
+
+    const rig = $('#rig'), deck = $('.deck'), glow = $('#glow'), track = $('#tk'),
+      countEl = $('#count'), nextline = $('#nextline'), regslider = $('#regslider'), unlockedEl = $('#unlocked'),
+      manualBtn = $('#manualBtn'), autoBtn = $('#autoBtn'), resetBtn = $('#reset'),
+      wheel = $('#wheel'), wheelbox = $('#wheelbox'), minehub = $('#minehub'), accel = $('#accel');
+
+    const BAR_ANGLE = 84;
+    let pos = 0;                 // level the excavator is parked at (0..N-1); N = finished
+    let mined = new Set();       // cleared levels
+    let deckAngle = 0;           // 0 = forward, ~84 = facing the bar
+    let regCount = 0;            // registrations shown on the slider
+    let busy = false, won = false;
+    let idleTimer = null, lastExpected = 'none', renudged = false;
+
+    function layout() {
+      const scene = $('#scene');
+      // sleepers along the track
+      const sl = $('#sleepers'); sl.innerHTML = '';
+      const h = track.clientHeight;
+      for (let y = 6; y < h - 6; y += 16) { const d = document.createElement('div'); d.className = 'sleeper'; d.style.top = y + 'px'; sl.appendChild(d); }
+      // street lamps: left of the track, at each level's center
+      lampEls.forEach((lamp, idx) => {
+        lamp.style.top = centerOf(idx) + 'px';
+        lamp.style.left = (track.offsetLeft - 34) + 'px';
+      });
+      // finish banner centered on the track, at the top
+      const fin = $('#finish');
+      fin.style.left = (track.offsetLeft + track.offsetWidth / 2) + 'px';
+      fin.style.top = '6px';
+      positionRig();
+    }
+    function centerOf(idx) { const el = tierEls.find(e => +e.dataset.idx === idx); return el.offsetTop + el.offsetHeight / 2; }
+    function levelY(level) { return level >= N ? Math.max(20, centerOf(N - 1) - 40) : centerOf(level); }
+    function positionRig() {
+      const cy = levelY(Math.min(pos, N));
+      rig.style.transform = `translateY(${cy - 85}px)`;         // rig is 170 tall
+      glow.style.height = ($('#scene').clientHeight - cy) + 'px';
+    }
+    function updateReadout() {
+      unlockedEl.textContent = mined.size;
+      let hi = -1; mined.forEach(i => { if (i > hi) hi = i; });
+      if (regCount < (hi < 0 ? 0 : TIERS[hi].t)) regCount = TIERS[hi].t;
+      const pct = regCount / MAX * 100;
+      countEl.textContent = regCount;
+      regslider.value = regCount; regslider.style.setProperty('--fill', pct + '%');
+      if (mined.size >= N) { nextline.innerHTML = '<b>Bravo!</b> You built EYFI.'; }
+      else if (pos < N && !mined.has(pos)) { nextline.innerHTML = `Steer to <b>${TIERS[pos].title}</b> and break the ice`; }
+      else { nextline.innerHTML = pos < N - 1 ? `Drive up to <b>${TIERS[pos + 1].title}</b>` : 'Drive up to <b>the top</b>'; }
+    }
+
+    // ---- shared drive / slew / mine core (used by auto + manual) ----
+    function setDeck(a, animate) {
+      deckAngle = Math.max(-6, Math.min(96, a));
+      const t = animate ? 'transform .5s cubic-bezier(.3,.1,.2,1)' : 'transform 0s';
+      deck.style.transition = t; deck.style.transform = 'rotate(' + deckAngle + 'deg)';
+      wheel.style.transition = t; wheel.style.transform = 'rotate(' + deckAngle + 'deg)';
+      updateArming(); if (typeof setExpected === 'function') setExpected();
+    }
+    function deckAligned(w) { return w === 'fwd' ? deckAngle <= 13 : Math.abs(deckAngle - BAR_ANGLE) <= 15; }
+    function updateArming() {
+      minehub.classList.toggle('armed', !busy && !won && pos < N && deckAligned('bar'));
+      accel.classList.toggle('armed', !busy && !won && pos < N && mined.has(pos) && deckAligned('fwd'));
+    }
+    function scrollToLevel(level) {
+      const el = tierEls.find(e => +e.dataset.idx === Math.min(level, N - 1));
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    function updateLamps(curLevel) {
+      const c = Math.min((curLevel !== undefined) ? curLevel : pos, N - 1);
+      lampEls.forEach((l, i) => {
+        l.classList.toggle('lit', won || i <= c);            // current + everything behind = bright
+        l.classList.toggle('next', !won && i === c + 1 && c + 1 < N); // the one level ahead = flicker
+      });
+    }
+    async function driveTo(level) {
+      rig.classList.add('driving'); engineStart();
+      const cy = levelY(level);
+      rig.style.transform = `translateY(${cy - 85}px)`;
+      glow.style.height = ($('#scene').clientHeight - cy) + 'px';
+      scrollToLevel(level);
+      await wait(720);
+      engineStop(); rig.classList.remove('driving'); pos = level; updateLamps();
+    }
+    async function slewTo(a) { servoStart(); setDeck(a, true); await wait(560); servoStop(); }
+    async function mineLevel(level) {
+      const tier = tierEls.find(e => +e.dataset.idx === level);
+      scrollLevelIntoViewIfNeeded(level);
+      rig.classList.add('dig'); await wait(170);
+      wipeClean(tier, level);
+      rig.classList.remove('dig'); await wait(190);
+      rig.classList.add('dig'); await wait(150); rig.classList.remove('dig');
+      mined.add(level); if (TIERS[level].t > regCount) regCount = TIERS[level].t; updateReadout(); updateLamps();
+      if (level === N - 1) win();
+    }
+    function wipeClean(tier, idx) {
+      // glass shine sweeps across as the ice cracks off
+      const sh = tier.querySelector('.shine');
+      sh.animate([{ transform: 'translateX(-120%)', opacity: 0 }, { opacity: 1, offset: .3 }, { transform: 'translateX(230%)', opacity: 0 }],
+        { duration: reduce ? 1 : 640, easing: 'cubic-bezier(.3,.1,.2,1)', fill: 'forwards' });
+      // quick frosty flash where the bucket strikes
+      const ice = tier.querySelector('.ice');
+      const flash = document.createElement('div');
+      flash.style.cssText = 'position:absolute;inset:0;z-index:6;border-radius:12px;pointer-events:none;background:radial-gradient(circle at 10% 50%, rgba(232,244,255,.9), rgba(190,224,245,.4) 26%, transparent 55%)';
+      tier.appendChild(flash);
+      flash.animate([{ opacity: 0 }, { opacity: 1, offset: .25 }, { opacity: 0 }], { duration: 520, easing: 'ease-out' });
+      setTimeout(() => flash.remove(), 540);
+      if (!reduce) iceShards(tier);
+      sndCrush(); setTimeout(sndCrack, 55);
+      // the frost clears
+      ice.style.opacity = '0';
+      tier.classList.add('on'); sndChime();
+      if (!reduce) burst(idx === N - 1, tier);
+    }
+
+    // ---- auto: Start the climb ----
+    async function climbTo() {
+      if (busy) return; busy = true; won = false; lockBtns(true); updateArming(); clearTimeout(idleTimer); lastExpected = 'none';
+      for (let i = 0; i < N; i++) { await driveTo(i); await slewTo(BAR_ANGLE); await mineLevel(i); await slewTo(0); }
+      busy = false; lockBtns(false);
+    }
+    function win() {
+      if (won) return; won = true;
+      updateReadout(); updateArming(); updateLamps();
+      [accel, minehub, wheelbox].forEach(el => el.classList.remove('guide'));
+      if (!reduce) { burst(true, rig); setTimeout(() => burst(true, rig), 260); setTimeout(() => burst(true, rig), 520); }
+      sndCelebrate();
+      lastExpected = 'none'; clearTimeout(idleTimer);
+      // victory drive up under the banner, once the celebration lands
+      setTimeout(() => {
+        if (!won) return; setDeck(0, true);
+        setTimeout(() => {
+          if (!won) return; rig.classList.add('driving'); engineStart();
+          const cy = levelY(N); rig.style.transform = `translateY(${cy - 85}px)`; glow.style.height = ($('#scene').clientHeight - cy) + 'px';
+          scrollToLevel(N - 1);
+          setTimeout(() => { engineStop(); rig.classList.remove('driving'); }, 900);
+        }, 280);
+      }, 520);
+    }
+
+    // ---- manual cockpit ----
+    function doAccel() {
+      if (mode === 'auto' || busy || won || pos >= N || !mined.has(pos) || !deckAligned('fwd')) return;
+      userActed(); busy = true; updateArming();
+      (async () => {
+        const next = pos + 1; await driveTo(next); busy = false;
+        if (!won) { updateArming(); setExpected(); }
+      })();
+    }
+    function doMine() {
+      if (mode === 'auto' || busy || won || pos >= N || !deckAligned('bar')) return;
+      userActed(); busy = true; updateArming();
+      (async () => { await mineLevel(pos); busy = false; if (!won) { updateArming(); setExpected(); } })();
+    }
+    // press-to-act: a tap and a press-and-hold both fire instantly on press
+    accel.addEventListener('pointerdown', e => { e.preventDefault(); doAccel(); });
+    minehub.addEventListener('pointerdown', e => { e.stopPropagation(); e.preventDefault(); doMine(); });
+    // draggable steering wheel → live deck slew
+    let dragging = false, startAng = 0, startDeck = 0;
+    function ptrAng(e) { const r = wheel.getBoundingClientRect(); return Math.atan2(e.clientY - (r.top + r.height / 2), e.clientX - (r.left + r.width / 2)) * 180 / Math.PI; }
+    function scrollLevelIntoViewIfNeeded(level) {
+      const el = tierEls.find(e => +e.dataset.idx === Math.min(level, N - 1));
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      if (r.top < 90 || r.bottom > innerHeight - 170) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    wheelbox.addEventListener('pointerdown', e => { if (mode === 'auto' || busy || won || pos >= N) return; scrollLevelIntoViewIfNeeded(pos); dragging = true; startAng = ptrAng(e); startDeck = deckAngle; try { wheelbox.setPointerCapture(e.pointerId); } catch (_) { } servoStart(); userActed(); e.preventDefault(); });
+    wheelbox.addEventListener('pointermove', e => { if (!dragging) return; let d = ptrAng(e) - startAng; while (d > 180) d -= 360; while (d < -180) d += 360; setDeck(startDeck + d, false); });
+    function endDrag() { if (!dragging) return; dragging = false; servoStop(); setExpected(); }
+    wheelbox.addEventListener('pointerup', endDrag);
+    wheelbox.addEventListener('pointercancel', endDrag);
+    // keyboard fallback
+    addEventListener('keydown', e => {
+      if (busy || won || mode === 'auto') return;
+      if (e.key === 'ArrowRight') { setDeck(deckAngle + 8, true); scrollLevelIntoViewIfNeeded(pos); userActed(); setExpected(); }
+      else if (e.key === 'ArrowLeft') { setDeck(deckAngle - 8, true); scrollLevelIntoViewIfNeeded(pos); userActed(); setExpected(); }
+      else if (e.code === 'Space') { e.preventDefault(); doAccel(); }
+      else if (e.key === 'Enter') { doMine(); }
+    });
+
+    // ---- registration slider: drag to set count, unlock bars, and drive the excavator ----
+    function targetForValue(v) { let t = -1; for (let i = 0; i < N; i++) if (v >= TIERS[i].t) t = i; return t; }
+    regslider.addEventListener('input', e => {           // live preview while dragging
+      if (busy) { regslider.value = regCount; return; }
+      const v = +e.target.value; countEl.textContent = v; regslider.style.setProperty('--fill', (v / MAX * 100) + '%');
+    });
+    regslider.addEventListener('change', e => {          // on release: make it happen
+      if (busy) { updateReadout(); return; }
+      const v = +e.target.value; userActed(); applyScrub(targetForValue(v), v);
+    });
+    // robust drag: a press anywhere on the track grabs the thumb (fixes not being able to grab from 0 on touch)
+    let sliderDrag = false;
+    function setSliderFromX(clientX) {
+      const r = regslider.getBoundingClientRect();
+      const frac = Math.min(1, Math.max(0, (clientX - r.left) / r.width));
+      regslider.value = Math.round(frac * MAX);
+      regslider.dispatchEvent(new Event('input'));
+    }
+    regslider.addEventListener('pointerdown', e => { if (regslider.disabled || busy) return; sliderDrag = true; try { regslider.setPointerCapture(e.pointerId); } catch (_) { } setSliderFromX(e.clientX); e.preventDefault(); });
+    regslider.addEventListener('pointermove', e => { if (sliderDrag) setSliderFromX(e.clientX); });
+    function sliderEnd() { if (!sliderDrag) return; sliderDrag = false; regslider.dispatchEvent(new Event('change')); }
+    regslider.addEventListener('pointerup', sliderEnd);
+    regslider.addEventListener('pointercancel', sliderEnd);
+    function refreeze(level) {
+      const el = tierEls.find(e => +e.dataset.idx === level);
+      el.classList.remove('on'); el.querySelector('.ice').style.opacity = '1';
+      el.querySelector('.shine').getAnimations().forEach(a => a.cancel());
+    }
+    async function applyScrub(target, v) {
+      if (busy) return; busy = true; won = false; lockBtns(true); updateArming(); clearTimeout(idleTimer); lastExpected = 'none';
+      for (let i = N - 1; i > target; i--) { if (mined.has(i)) { mined.delete(i); refreeze(i); } }   // re-freeze bars above target
+      updateLamps();
+      if (deckAngle > 13) await slewTo(0);
+      while (pos < target) { if (!mined.has(pos)) { await slewTo(BAR_ANGLE); await mineLevel(pos); await slewTo(0); } await driveTo(pos + 1); }
+      while (pos > target) { await driveTo(pos - 1); }
+      if (target >= 0 && !mined.has(target)) { await slewTo(BAR_ANGLE); await mineLevel(target); await slewTo(0); }
+      regCount = Math.max(v, mined.size ? Math.max(...[...mined].map(i => TIERS[i].t)) : 0);
+      busy = false; lockBtns(false);
+      updateReadout(); updateArming(); updateLamps(); setExpected();
+    }
+
+    // ---- guidance: pulse once when a control becomes the next move, + one idle re-nudge ----
+    function expectedControl() {
+      if (busy || won) return 'none';
+      if (!mined.has(pos)) return deckAligned('bar') ? 'mine' : 'steer';
+      return deckAligned('fwd') ? 'accel' : 'steer';
+    }
+    function setExpected() {
+      const e = expectedControl();
+      if (e === lastExpected) return;
+      lastExpected = e;
+      [accel, minehub, wheelbox].forEach(el => el.classList.remove('guide'));
+      const el = e === 'accel' ? accel : e === 'mine' ? minehub : e === 'steer' ? wheelbox : null;
+      if (el) el.classList.add('guide');
+    }
+    function userActed() { }
+
+    function doReset() {
+      if (busy) return;
+      pos = 0; mined.clear(); regCount = 0; won = false;
+      tierEls.forEach(el => {
+        el.classList.remove('on');
+        el.querySelector('.ice').style.opacity = '1';
+        el.querySelector('.shine').getAnimations().forEach(a => a.cancel());
+      });
+      lampEls.forEach(l => l.classList.remove('lit', 'next')); updateLamps();
+      rig.classList.remove('dig', 'driving');
+      setDeck(0, true); positionRig(); updateReadout(); updateArming();
+      lastExpected = 'none'; setExpected();
+    }
+
+    // ---- mode: Manual (default) vs Auto (sticky) ----
+    let mode = 'manual';
+    function lockBtns(d) { manualBtn.disabled = d; autoBtn.disabled = d; resetBtn.disabled = d; }
+    function applyMode() {
+      const auto = mode === 'auto';
+      manualBtn.classList.toggle('on', !auto);
+      autoBtn.classList.toggle('on', auto);
+      $('#cockpit').classList.toggle('locked', auto);
+      regslider.disabled = auto;
+      updateArming();
+    }
+    function setMode(m) {
+      if (busy) return;
+      mode = m; applyMode(); doReset();
+      if (m === 'auto') climbTo();
+    }
+    manualBtn.addEventListener('click', () => { if (mode !== 'manual') setMode('manual'); });
+    autoBtn.addEventListener('click', () => setMode('auto'));   // (re)runs the climb; stays on Auto
+    resetBtn.onclick = doReset;
+
+    // ---- confetti (₹ tokens + orange/gold bits) ----
+    const cv = $('#confetti'), ctx = cv.getContext('2d'); let parts = [], rafC = null;
+    function fit() { cv.width = innerWidth * devicePixelRatio; cv.height = innerHeight * devicePixelRatio; ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0); }
+    addEventListener('resize', () => { fit(); layout(); }); fit();
+    function burst(big, anchor) {
+      const r = (anchor || rig).getBoundingClientRect();
+      const cx = r.left + r.width * 0.45, cy = r.top + r.height * 0.5, n = big ? 90 : 38;
+      for (let i = 0; i < n; i++) {
+        const a = Math.random() * Math.PI * 2, sp = (big ? 9 : 6) * (0.5 + Math.random());
+        parts.push({
+          x: cx, y: cy, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 4, g: 0.18 + Math.random() * 0.12, life: 1,
+          rot: Math.random() * 6, vr: (Math.random() - .5) * 0.3, type: Math.random() < 0.42 ? 'r' : 'b', sz: 8 + Math.random() * 8,
+          col: Math.random() < 0.5 ? '#E8B923' : (Math.random() < 0.6 ? '#BFE94A' : '#FFD264')
+        });
+      }
+      if (!rafC) loopC();
+    }
+    function loopC() {
+      ctx.clearRect(0, 0, cv.width, cv.height); parts = parts.filter(p => p.life > 0);
+      parts.forEach(p => {
+        p.vy += p.g; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life -= 0.012;
+        ctx.save(); ctx.globalAlpha = Math.max(0, p.life); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+        if (p.type === 'r') { ctx.fillStyle = p.col; ctx.font = '700 ' + p.sz + 'px "Space Mono",monospace'; ctx.fillText('₹', 0, 0); }
+        else if (p.type === 'ice') { ctx.fillStyle = p.col; ctx.beginPath(); ctx.moveTo(0, -p.sz / 2); ctx.lineTo(p.sz * 0.34, 0); ctx.lineTo(0, p.sz / 2); ctx.lineTo(-p.sz * 0.34, 0); ctx.closePath(); ctx.fill(); }
+        else { ctx.fillStyle = p.col; ctx.fillRect(-p.sz / 2, -p.sz / 4, p.sz, p.sz / 2); } ctx.restore();
+      });
+      if (parts.length) rafC = requestAnimationFrame(loopC); else { ctx.clearRect(0, 0, cv.width, cv.height); rafC = null; }
+    }
+
+    // ---- ice shards on the crack ----
+    function iceShards(tier) {
+      const r = tier.getBoundingClientRect(), cx = r.left + 18, cy = r.top + r.height / 2, n = 18;
+      for (let i = 0; i < n; i++) {
+        const a = -Math.PI / 2 + (Math.random() - .5) * 2.6, sp = 4 + Math.random() * 8;
+        parts.push({
+          x: cx, y: cy, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 2, g: .22 + Math.random() * .12, life: 1, rot: Math.random() * 6, vr: (Math.random() - .5) * .45,
+          type: 'ice', sz: 4 + Math.random() * 7, col: Math.random() < .5 ? '#e2f1ff' : (Math.random() < .6 ? '#a9d6f0' : '#ffffff')
+        });
+      }
+      if (!rafC) loopC();
+    }
+
+    // ---- sound (ON by default; audio actually starts on first user gesture per browser policy) ----
+    let audioOn = true, actx = null, engineNodes = null;
+    addEventListener('pointerdown', () => ensureAudio(), { once: true });
+    function ensureAudio() { if (!actx) { try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return; } } if (actx.state === 'suspended') actx.resume(); }
+    function sndCrack() {
+      if (!audioOn || !actx) return; const t = actx.currentTime, len = Math.floor(actx.sampleRate * 0.18);
+      const buf = actx.createBuffer(1, len, actx.sampleRate), d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+      const s = actx.createBufferSource(); s.buffer = buf; const hp = actx.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 1400;
+      const g = actx.createGain(); g.gain.value = 0.3; s.connect(hp); hp.connect(g); g.connect(actx.destination); s.start(t);
+    }
+    function sndChime() {
+      if (!audioOn || !actx) return; const t = actx.currentTime;
+      [660, 880, 1174].forEach((f, i) => {
+        const o = actx.createOscillator(), g = actx.createGain(); o.type = 'sine'; o.frequency.value = f;
+        g.gain.setValueAtTime(0, t + i * 0.07); g.gain.linearRampToValueAtTime(0.15, t + i * 0.07 + 0.02); g.gain.exponentialRampToValueAtTime(0.001, t + i * 0.07 + 0.45);
+        o.connect(g); g.connect(actx.destination); o.start(t + i * 0.07); o.stop(t + i * 0.07 + 0.5);
+      });
+    }
+    function engineStart() {
+      if (!audioOn || !actx || engineNodes) return; const t = actx.currentTime;
+      const o = actx.createOscillator(); o.type = 'sawtooth'; o.frequency.value = 94;
+      const o2 = actx.createOscillator(); o2.type = 'sawtooth'; o2.frequency.value = 188;
+      const lfo = actx.createOscillator(); lfo.frequency.value = 13; const lg = actx.createGain(); lg.gain.value = 16; lfo.connect(lg); lg.connect(o.frequency);
+      const lp = actx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1900;
+      const g = actx.createGain(); g.gain.value = 0; g.gain.linearRampToValueAtTime(0.16, t + 0.08);
+      const g2 = actx.createGain(); g2.gain.value = 0.09;
+      o.connect(lp); o2.connect(g2); g2.connect(lp); lp.connect(g); g.connect(actx.destination);
+      o.start(); o2.start(); lfo.start(); engineNodes = { o, o2, lfo, g };
+    }
+    function engineStop() { if (!engineNodes || !actx) return; const n = engineNodes; engineNodes = null; n.g.gain.linearRampToValueAtTime(0, actx.currentTime + 0.12); setTimeout(() => { try { n.o.stop(); n.o2 && n.o2.stop(); n.lfo.stop(); } catch (e) { } }, 220); }
+    function sndCrush() {
+      if (!audioOn || !actx) return; const t = actx.currentTime, len = Math.floor(actx.sampleRate * 0.16);
+      const buf = actx.createBuffer(1, len, actx.sampleRate), d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) { const env = Math.pow(1 - i / len, 1.6); d[i] = (Math.random() * 2 - 1) * env; }
+      const s = actx.createBufferSource(); s.buffer = buf; const bp = actx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 900; bp.Q.value = 0.7;
+      const g = actx.createGain(); g.gain.value = 0.6; s.connect(bp); bp.connect(g); g.connect(actx.destination); s.start(t);
+    }
+    let servoNodes = null;
+    function servoStart() {
+      if (!audioOn || !actx || servoNodes) return; const t = actx.currentTime;
+      const o = actx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(540, t); o.frequency.linearRampToValueAtTime(780, t + 0.5);
+      const bp = actx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 820; bp.Q.value = 2.5;
+      const g = actx.createGain(); g.gain.value = 0; g.gain.linearRampToValueAtTime(0.13, t + 0.04);
+      o.connect(bp); bp.connect(g); g.connect(actx.destination); o.start(); servoNodes = { o, g };
+    }
+    function servoStop() { if (!servoNodes || !actx) return; const n = servoNodes; servoNodes = null; n.g.gain.linearRampToValueAtTime(0, actx.currentTime + 0.07); setTimeout(() => { try { n.o.stop(); } catch (e) { } }, 130); }
+    function sndCelebrate() {
+      if (!audioOn || !actx) return; const t = actx.currentTime;
+      [523, 659, 784, 1046, 1318].forEach((f, i) => {
+        const o = actx.createOscillator(), g = actx.createGain(); o.type = 'triangle'; o.frequency.value = f;
+        const st = t + i * 0.11; g.gain.setValueAtTime(0, st); g.gain.linearRampToValueAtTime(0.17, st + 0.02); g.gain.exponentialRampToValueAtTime(0.001, st + 0.5);
+        o.connect(g); g.connect(actx.destination); o.start(st); o.stop(st + 0.55);
+      });
+      const ct = t + 0.6;[523, 659, 784].forEach(f => {
+        const o = actx.createOscillator(), g = actx.createGain(); o.type = 'sine'; o.frequency.value = f;
+        g.gain.setValueAtTime(0, ct); g.gain.linearRampToValueAtTime(0.13, ct + 0.03); g.gain.exponentialRampToValueAtTime(0.001, ct + 0.9);
+        o.connect(g); g.connect(actx.destination); o.start(ct); o.stop(ct + 1);
+      });
+    }
+    $('#sndbtn').addEventListener('click', () => { audioOn = !audioOn; $('#sndbtn').classList.toggle('on', audioOn); if (audioOn) ensureAudio(); else engineStop(); });
+    $('#sndbtn').classList.toggle('on', audioOn);
+    const helpbtn = $('#helpbtn'), helpcard = $('#helpcard');
+    helpbtn.addEventListener('click', e => { e.stopPropagation(); helpcard.hidden = !helpcard.hidden; });
+    document.addEventListener('click', e => { if (!helpcard.hidden && !helpcard.contains(e.target) && e.target !== helpbtn) helpcard.hidden = true; });
+
+    rig.classList.add('lamp'); updateLamps();
+    addEventListener('load', () => { layout(); updateReadout(); setDeck(0, false); updateArming(); setExpected(); updateLamps(); applyMode(); });
+    layout(); updateReadout(); setDeck(0, false); updateArming(); setExpected(); updateLamps(); applyMode();
+  </script>
+</body>
+
+</html>
