@@ -79,7 +79,7 @@
       white-space: nowrap
     }
 
-    .ticker .mq-track  {
+    .ticker .mq-track {
       display: inline-block;
       padding: 7px 0;
       font-family: var(--display);
@@ -89,7 +89,7 @@
       animation: scroll 22s linear infinite
     }
 
-    .ticker .mq-track span  {
+    .ticker .mq-track span {
       padding: 0 14px
     }
 
@@ -1187,7 +1187,7 @@
   <canvas id="confetti"></canvas>
 
   <div class="ticker" aria-hidden="true">
-    <div class="mq-track"></div>
+    <div class="mq-track">
       <span>✦ WAVE 01 SCOUTS</span><span>✦ BUILD EYFI ON YOUR CAMPUS</span><span>✦ LIMITED SPOTS PER
         COLLEGE</span><span>✦ PAID INTERNSHIPS</span>
       <span>✦ WAVE 01 SCOUTS</span><span>✦ BUILD EYFI ON YOUR CAMPUS</span><span>✦ LIMITED SPOTS PER
@@ -1204,8 +1204,7 @@
 
       <div class="desk">
         <div class="regwrap">
-          <div class="rs-head"><span class="count-label">Registrations · drag to unlock</span><span class="rs-val"><span
-                class="rupee"></span><span id="count">0</span> <span class="rs-max">/ 200</span></span></div>
+          <div class="rs-head"><span class="count-label">Registrations · drag to unlock</span><span class="rs-val"><span id="count">0</span> <span class="rs-max">/ 200</span></span></div>
           <div class="rs-slot">
             <input type="range" id="regslider" min="0" max="200" step="1" value="0"
               aria-label="Registrations — drag to unlock rewards">
@@ -1362,7 +1361,7 @@
     };
     const TIERS = [
       { t: 0, title: 'Scout', rg: '', desc: 'Private community, starter kit, part of the movement from day one', icon: 'flag' },
-      { t: 25, title: 'Campus Ambassador', rg: '· 25 regs', desc: 'Official title and badge, first swag drop, cash-prize challenge', icon: 'star' },
+      { t: 25, title: 'Campus Ambassador', rg: '· 25 regs', desc: 'Official title and badge, first swag drop, prize-linked challenge', icon: 'star' },
       { t: 50, title: 'Level up', rg: '· 50 regs', desc: 'Event grants for your campus, exclusive merch', icon: 'up' },
       { t: 75, title: 'Go further', rg: '· 75 regs', desc: 'Mentorship access, Campus event grants', icon: 'bulb' },
       { t: 100, title: 'Paid internship Opportunity', rg: '· 100 regs', desc: 'Internship opportunities, invite to ambassador events', icon: 'bag' },
